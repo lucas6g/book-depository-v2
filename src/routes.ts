@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { Role } from './enums/Role'
 import { ensureAuthenticate } from './middlewares/ensureAuthenticate'
+import { registerInstitutionController } from './useCases/institution/RegisterInstitutionController'
 import { authenticateUserController } from './useCases/user/authenticateUser/AuthenticateUserController'
 import { checkUserTokenController } from './useCases/user/checkUserToken/CheckUserTokenController'
 import { createUserController } from './useCases/user/createUser/CreateUserController'
@@ -20,6 +21,14 @@ router.post('/confirmation', checkUserTokenController.handle)
 router.post('/recover-password', recoverPasswordController.handle)
 
 router.put('/update-password', updatePasswordController.handle)
+
+// aplication authentitated and permission
+
+router.post(
+  '/register-institution',
+  ensureAuthenticate(Role.INSTITUTION_ADMIN),
+  registerInstitutionController.handle
+)
 
 router.get('/protected', ensureAuthenticate(Role.ADMIN), (_req, res) =>
   res.status(200).send('Hello World!')

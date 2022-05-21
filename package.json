@@ -1,0 +1,40 @@
+{
+  "name": "desafio-agenciabegin-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lucas6g/desafio-agenciabegin-backend",
+  "author": "lucas6g <lucas.trabalho1533@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.14.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "prisma": "^3.14.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "git-commit-msg-linter": "^4.1.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.4"
+  },
+  "prisma": {
+    "schema": "./src/database/schema.prisma"
+  }
+}

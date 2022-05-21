@@ -3,7 +3,7 @@ import { User } from '../../dtos/User'
 import { UserRepository } from '../UserRepository'
 
 export class UserRepositoryPrisma implements UserRepository {
-  async create (user: User.Input): Promise<any> {
+  async create (user: User.Input, token: string): Promise<any> {
     const userResult = await prismaClient.user.create({
       data: {
         name: user.name,

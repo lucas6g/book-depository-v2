@@ -35,14 +35,16 @@ class CreateUserUseCase {
       user = { ...input, role: Role.USER }
     }
     user.password = passwordHash
-    await this.userRepository.create(user)
+    const token = (Math.floor(Math.random() * 90000) + 100000).toString()
+    await this.userRepository.create(user, token)
     try {
       await this.mailProvider.sendMail({
         to: { name: user.name, email: user.email },
-        from: { name: 'Meu App', email: env.mail.from },
+        from: { name: 'Book Depository', email: env.mail.from },
         subject: 'Confirmação de Cadastro',
-        text: 'Seja bem vindo ao Meu App',
-        html: ` <p>Seja bem vindo ao Meu App, ${user.name}</p>=`
+        text: 'Seja bem vindo ao Book Depository',
+        html: ` <p>Seja bem vindo ao Book Depository, ${user.name}!</p>
+                <p>Seu código de confirmação é <strong>${token}</strong></p>`
       })
     } catch (error: any) {
       throw new Error(`Error sending email: ${error.message}`)

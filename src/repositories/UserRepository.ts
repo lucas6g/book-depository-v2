@@ -3,4 +3,5 @@ import { User } from '../dtos/User'
 export interface UserRepository<T = any> {
   create(user: User.Input): Promise<T>;
   getByEmail(email: string): Promise<T>;
+  getByUserName(username: string): Promise<T>;
 }

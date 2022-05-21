@@ -4,4 +4,5 @@ export interface UserRepository<T = any> {
   create(user: User.Input, token: string): Promise<T>;
   getByEmail(email: string): Promise<T>;
   getByUserName(username: string): Promise<T>;
+  getById(id: string): Promise<T>;
 }

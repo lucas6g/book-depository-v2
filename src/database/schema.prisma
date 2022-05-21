@@ -18,6 +18,7 @@ model User {
   createdAt         DateTime      @default(now())
   token             Token?
   role              Role          @default(USER)
+  institution       Institution?
 
   @@map("users")
 }
@@ -31,8 +32,21 @@ model Address {
   state             String
   zip               String
   createdAt         DateTime      @default(now())
+  institution       Institution[]
 
   @@map("addresses")
+}
+
+model Institution {
+  id                String        @id @default(uuid()) 
+  name              String        @unique
+  user              User          @relation(fields: [userId], references: [id])
+  userId            String
+  address           Address       @relation(fields: [addressId], references: [id])
+  addressId         String
+  createdAt         DateTime      @default(now())
+
+  @@map("institutions")
 }
 
 model Token {

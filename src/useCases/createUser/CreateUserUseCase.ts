@@ -7,6 +7,8 @@ class CreateUserUseCase {
   constructor (private readonly userRepository: UserRepository) {}
 
   async execute (input: User.Input): Promise<void> {
+    const emailExist = await this.userRepository.getByEmail(input.email)
+    if (emailExist) { throw new Error(`User with email '${input.email}' already exists`) }
     let user
     if (input.isAdmin) {
       user = { ...input, role: Role.INSTITUTION_ADMIN }

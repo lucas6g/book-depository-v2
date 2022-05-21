@@ -23,4 +23,16 @@ export namespace User {
       name?: string;
     }[];
   };
+  export type Auth = {
+    email: string;
+    password: string;
+  };
+  export type Result = {
+    user: {
+      id: string;
+      email: string;
+      role: string;
+    };
+    token: string;
+  };
 }

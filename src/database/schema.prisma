@@ -20,7 +20,8 @@ model User {
   token             Token?
   role              Role          @default(USER)
   institution       Institution[]
-
+  books             Book[]
+  
   @@map("users")
 }
 
@@ -34,6 +35,7 @@ model Address {
   zip               String
   createdAt         DateTime      @default(now())
   institution       Institution[]
+  book              Book[]
 
   @@map("addresses")
 }
@@ -46,8 +48,32 @@ model Institution {
   address           Address       @relation(fields: [addressId], references: [id])
   addressId         String
   createdAt         DateTime      @default(now())
+  books             Book[]
 
   @@map("institutions")
+}
+
+model Book {
+  id                String        @id @default(uuid())
+  title             String        @unique
+  author            String
+  edition           String
+  year              String
+  publishedDate     String        
+  quantity          String
+  bookCondition     BookCondition
+  available         Boolean       @default(true)
+  address           Address       @relation(fields: [addressId], references: [id])      
+  addressId         String    
+  institution       Institution   @relation(fields: [institutionId], references: [id])
+  institutionId     String
+  user              User          @relation(fields: [userId], references: [id])
+  userId            String
+  image             Image         @relation(fields: [imageId], references: [id])
+  imageId           String
+  createdAt         DateTime      @default(now())
+
+  @@map("books")
 }
 
 model Image {
@@ -57,8 +83,9 @@ model Image {
   key               String?
   type              String
   size              Int
-  user              User?
   createdAt         DateTime      @default(now())
+  user              User?
+  book              Book?
 
   @@map("images")
 }
@@ -79,4 +106,10 @@ enum Role {
   ADMIN
   USER
   INSTITUTION_ADMIN
+}
+
+enum BookCondition {
+  NEW
+  USED
+  DAMAGED
 }

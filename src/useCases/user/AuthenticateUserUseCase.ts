@@ -1,9 +1,9 @@
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import env from '../../../config/env'
-import { User } from '../../../dtos/User'
-import { userRepository } from '../../../repositories/implementations/UserRepositoryPrisma'
-import { UserRepository } from '../../../repositories/UserRepository'
+import env from '../../config/env'
+import { User } from '../../dtos/User'
+import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
+import { UserRepository } from '../../repositories/UserRepository'
 
 class AuthenticateUserUseCase {
   constructor (private readonly userRepository: UserRepository) {}

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { updatePasswordUseCase } from './UpdatePasswordUseCase'
+import { updatePasswordUseCase } from '../../useCases/user/UpdatePasswordUseCase'
 
 export class UpdatePasswordController {
   async handle (req: Request, res: Response): Promise<Response> {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { registerInstitutionUseCase } from './RegisterInstitutionUseCase'
+import { registerInstitutionUseCase } from '../../useCases/institution/RegisterInstitutionUseCase'
 
 class RegisterInstitutionController {
   async handle (req: Request, res: Response): Promise<Response> {

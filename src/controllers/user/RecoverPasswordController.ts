@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { recoverPasswordUseCase } from './RecoverPasswordUseCase'
+import { recoverPasswordUseCase } from '../../useCases/user/RecoverPasswordUseCase'
 
 class RecoverPasswordController {
   async handle (req: Request, res: Response): Promise<Response> {

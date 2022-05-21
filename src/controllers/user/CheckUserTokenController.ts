@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { checkUserTokenUseCase } from './CheckUserTokenUseCase'
+import { checkUserTokenUseCase } from '../../useCases/user/CheckUserTokenUseCase'
 
 class CheckUserTokenController {
   async handle (req: Request, res: Response): Promise<Response> {

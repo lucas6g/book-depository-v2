@@ -6,4 +6,5 @@ export interface UserRepository<T = any> {
   getByUserName(username: string): Promise<T>;
   getById(id: string): Promise<T>;
   validate(userId: string): Promise<void>;
+  update(userId: string, user: User.Input): Promise<void>;
 }

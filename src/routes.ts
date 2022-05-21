@@ -5,6 +5,7 @@ import { authenticateUserController } from './useCases/authenticateUser/Authenti
 import { checkUserTokenController } from './useCases/checkUserToken/CheckUserTokenController'
 import { createUserController } from './useCases/createUser/CreateUserController'
 import { recoverPasswordController } from './useCases/recoverPassword/RecoverPasswordController'
+import { updatePasswordController } from './useCases/updatePassword/UpdatePasswordController'
 
 export const router = Router()
 
@@ -17,6 +18,8 @@ router.post('/signin', authenticateUserController.handle)
 router.post('/confirmation', checkUserTokenController.handle)
 
 router.post('/recover-password', recoverPasswordController.handle)
+
+router.put('/update-password', updatePasswordController.handle)
 
 router.get('/protected', ensureAuthenticate(Role.ADMIN), (_req, res) =>
   res.status(200).send('Hello World!')

@@ -20,19 +20,14 @@ class RegisterInstitutionUseCase {
     if (user.role !== Role.INSTITUTION_ADMIN) {
       throw new Error('User is not an institution admin')
     }
-    const exist = await this.institutionRepository.findByName(input.name)
+    const exist = await this.institutionRepository.getByName(input.name)
     if (exist) throw new Error('Institution already exists')
 
     try {
       await this.institutionRepository.create(user.id, {
         name: input.name,
         address: {
-          street: input.address.street,
-          number: input.address.number,
-          reference: input.address.reference,
-          zip: input.address.zip,
-          city: input.address.city,
-          state: input.address.state
+          ...input.address
         }
       })
       await this.mailProvider.sendMail({

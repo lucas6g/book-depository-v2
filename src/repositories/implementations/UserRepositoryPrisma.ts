@@ -22,19 +22,40 @@ export class UserRepositoryPrisma implements UserRepository {
 
   async getByEmail (email: string): Promise<any> {
     return await prismaClient.user.findUnique({
-      where: { email }
+      where: { email },
+      include: {
+        image: {
+          select: { url: true }
+        },
+        institution: true,
+        books: true
+      }
     })
   }
 
   async getByUserName (username: string): Promise<any> {
     return await prismaClient.user.findUnique({
-      where: { username }
+      where: { username },
+      include: {
+        image: {
+          select: { url: true }
+        },
+        institution: true,
+        books: true
+      }
     })
   }
 
   async getById (id: string): Promise<any> {
     return await prismaClient.user.findUnique({
-      where: { id }
+      where: { id },
+      include: {
+        image: {
+          select: { url: true }
+        },
+        institution: true,
+        books: true
+      }
     })
   }
 

@@ -11,9 +11,9 @@ export namespace Book {
     publishedDate: string;
     quantity: string;
     institutionId: string;
-    address: Address;
     bookCondition: BookCondition;
-    image: Image;
+    address: Address;
+    image?: Image;
   };
   export type Output = {
     id: string;

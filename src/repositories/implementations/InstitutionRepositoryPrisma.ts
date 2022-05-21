@@ -23,10 +23,17 @@ export class InstitutionRepositoryPrisma implements InstitutionRepository {
     })
   }
 
-  async findByName (name: string): Promise<any> {
+  async getByName (name: string): Promise<any> {
     return await prismaClient.institution.findUnique({
       where: { name },
-      include: { address: true }
+      include: { address: true, books: true }
+    })
+  }
+
+  async getById (id: string): Promise<any> {
+    return await prismaClient.institution.findUnique({
+      where: { id },
+      include: { address: true, books: true }
     })
   }
 }

@@ -5,14 +5,7 @@ import fs from 'fs'
 import crypto from 'crypto'
 import { extension } from 'mime-types'
 
-// const destination: string = path.basename(process.env.UPLOAD_PATH as string)
-const destination: string = path.resolve(
-  __dirname,
-  '..',
-  '..',
-  'tmp',
-  'uploads'
-)
+const destination: string = path.basename(process.env.UPLOAD_PATH || 'tmp')
 
 const limits = {
   fileExtensions: process.env.UPLOAD_ALLOWED_TYPES?.split(',') as string[],

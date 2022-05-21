@@ -8,5 +8,16 @@ export default {
     url:
       process.env.APP_URL ||
       `http://${process.env.APP_HOST}:${process.env.APP_PORT}`
+  },
+  mail: {
+    host: String(process.env.MAIL_HOST) || '',
+    port: Number(process.env.MAIL_PORT) || 587,
+    user: String(process.env.MAIL_USER) || '',
+    pass: String(process.env.MAIL_PASSWORD) || '',
+    from: String(process.env.MAIL_FROM) || ''
+  },
+  maildev: {
+    host: String(process.env.MAILDEV_HOST) || '',
+    port: String(process.env.MAILDEV_PORT) || 1025
   }
 }

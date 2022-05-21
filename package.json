@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "maildev": "maildev -s 1024 -w 1081"
   },
   "dependencies": {
     "@prisma/client": "^3.14.0",

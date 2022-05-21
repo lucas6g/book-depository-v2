@@ -19,5 +19,9 @@ export default {
   maildev: {
     host: String(process.env.MAILDEV_HOST) || '',
     port: String(process.env.MAILDEV_PORT) || 1025
+  },
+  jwt: {
+    secret: String(process.env.JWT_SECRET) || '',
+    expiresIn: String(process.env.JWT_EXPIRES_IN) || ''
   }
 }

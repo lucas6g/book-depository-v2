@@ -5,4 +5,5 @@ export interface UserRepository<T = any> {
   getByEmail(email: string): Promise<T>;
   getByUserName(username: string): Promise<T>;
   getById(id: string): Promise<T>;
+  validate(userId: string): Promise<void>;
 }

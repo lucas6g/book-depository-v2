@@ -9,10 +9,9 @@ import { checkUserTokenController } from './controllers/user/CheckUserTokenContr
 import { createUserController } from './controllers/user/CreateUserController'
 import { recoverPasswordController } from './controllers/user/RecoverPasswordController'
 import { updatePasswordController } from './controllers/user/UpdatePasswordController'
+import { getAllBooksController } from './controllers/book/GetAllBooksController'
 
 export const router = Router()
-
-router.get('/', (_req, res) => res.status(200).send('Hello World!'))
 
 router.post('/signup', createUserController.handle)
 
@@ -38,6 +37,8 @@ router.post(
   ensureAuthenticate(Role.INSTITUTION_ADMIN),
   addBookController.handle
 )
+
+router.get('/', getAllBooksController.handle)
 
 router.get('/protected', ensureAuthenticate(Role.ADMIN), (_req, res) =>
   res.status(200).send('Hello World!')

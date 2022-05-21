@@ -1,12 +1,18 @@
 import { hash } from 'bcrypt'
 import validator from 'validator'
+import env from '../../config/env'
 import { User } from '../../dtos/User'
 import { Role } from '../../enums/Role'
+import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
+import { MailProvider } from '../../providers/MailProvider'
 import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
 import { UserRepository } from '../../repositories/UserRepository'
 
 class CreateUserUseCase {
-  constructor (private readonly userRepository: UserRepository) {}
+  constructor (
+    private readonly userRepository: UserRepository,
+    private readonly mailProvider: MailProvider
+  ) {}
 
   async execute (input: User.Input): Promise<void> {
     const isValid = validator.isEmail(input.email)
@@ -30,6 +36,21 @@ class CreateUserUseCase {
     }
     user.password = passwordHash
     await this.userRepository.create(user)
+    try {
+      await this.mailProvider.sendMail({
+        to: { name: user.name, email: user.email },
+        from: { name: 'Meu App', email: env.mail.from },
+        subject: 'Confirmação de Cadastro',
+        text: 'Seja bem vindo ao Meu App',
+        html: ` <p>Seja bem vindo ao Meu App, ${user.name}</p>=`
+      })
+    } catch (error: any) {
+      throw new Error(`Error sending email: ${error.message}`)
+    }
   }
 }
-export const createUserUseCase = new CreateUserUseCase(userRepository)
+const mailProvider = new MailProviderNodemailer()
+export const createUserUseCase = new CreateUserUseCase(
+  userRepository,
+  mailProvider
+)

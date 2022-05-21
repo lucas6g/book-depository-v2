@@ -1,4 +1,5 @@
 import { hash } from 'bcrypt'
+import validator from 'validator'
 import { User } from '../../dtos/User'
 import { Role } from '../../enums/Role'
 import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
@@ -8,6 +9,8 @@ class CreateUserUseCase {
   constructor (private readonly userRepository: UserRepository) {}
 
   async execute (input: User.Input): Promise<void> {
+    const isValid = validator.isEmail(input.email)
+    if (!isValid) throw new Error(`Invalid email: '${input.email}'`)
     const emailExist = await this.userRepository.getByEmail(input.email)
     if (emailExist) {
       throw new Error(`User with email '${input.email}' already exists`)

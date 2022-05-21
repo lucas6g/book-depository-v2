@@ -9,7 +9,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "prepare": "husky install",
-    "maildev": "maildev -s 1024 -w 1081"
+    "maildev": "maildev -s 1024 -w 1081",
+    "db": "prisma generate && prisma migrate dev && prisma studio --browser none --port 7777"
   },
   "dependencies": {
     "@prisma/client": "^3.14.0",

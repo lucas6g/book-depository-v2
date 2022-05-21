@@ -11,9 +11,13 @@ export class UserRepositoryPrisma implements UserRepository {
         email: user.email,
         password: user.password,
         role: user.role
-      }
+      },
+      select: { id: true, name: true, email: true }
     })
-    return { user: userResult }
+    const tokenResult = await prismaClient.token.create({
+      data: { userId: userResult.id, token, isValid: true }
+    })
+    return { user: userResult, token: tokenResult }
   }
 
   async getByEmail (email: string): Promise<any> {

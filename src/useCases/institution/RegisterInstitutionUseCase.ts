@@ -17,7 +17,9 @@ class RegisterInstitutionUseCase {
 
   async execute (userId: string, input: Institution.Input): Promise<void> {
     const user = await this.userRepository.getById(userId)
-    if (user.role !== Role.INSTITUTION_ADMIN) { throw new Error('User is not an institution admin') }
+    if (user.role !== Role.INSTITUTION_ADMIN) {
+      throw new Error('User is not an institution admin')
+    }
     const exist = await this.institutionRepository.findByName(input.name)
     if (exist) throw new Error('Institution already exists')
 

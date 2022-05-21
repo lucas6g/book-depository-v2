@@ -13,7 +13,7 @@
     "db": "prisma generate && prisma migrate dev && prisma studio --browser none --port 7777",
     "postinstall": "tsc",
     "watch-ts": "tsc --watch",
-    "deploy": "git add . && git commit -m Heroku && git push heroku main && heroku logs --tail"
+    "deploy": "git add . && git commit -m \"ci: heroku deploy\" && git push heroku main && heroku logs --tail"
   },
   "dependencies": {
     "@prisma/client": "^3.14.0",

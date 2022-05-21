@@ -18,8 +18,8 @@ class AuthenticateUserUseCase {
 
     const token = sign(
       {
-        id: result.id,
-        role: result.role
+        userId: result.id,
+        userRole: result.role
       },
       env.jwt.secret,
       {

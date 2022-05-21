@@ -16,9 +16,22 @@ model User {
   imageId           String?
   verified          Boolean       @default(false)
   createdAt         DateTime      @default(now())
+  token             Token?
   role              Role          @default(USER)
 
   @@map("users")
+}
+
+model Token {
+  id                String        @id @default(uuid())
+  token             String        @unique
+  isValid           Boolean       @default(true)
+  verified          Boolean       @default(false)
+  user              User          @relation(fields: [userId], references: [id])
+  userId            String       
+  createdAt         DateTime      @default(now())
+
+  @@map("tokens")
 }
 
 enum Role {

@@ -10,7 +10,10 @@
     "dev": "ts-node-dev --ignore-watch node_modules src/server.ts",
     "prepare": "husky install",
     "maildev": "maildev -s 1024 -w 1081",
-    "db": "prisma generate && prisma migrate dev && prisma studio --browser none --port 7777"
+    "db": "prisma generate && prisma migrate dev && prisma studio --browser none --port 7777",
+    "postinstall": "tsc",
+    "watch-ts": "tsc --watch",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main && heroku logs --tail"
   },
   "dependencies": {
     "@prisma/client": "^3.14.0",
@@ -48,5 +51,8 @@
   },
   "prisma": {
     "schema": "./src/database/schema.prisma"
+  },
+  "engines": {
+    "node": "16.13.0"
   }
 }

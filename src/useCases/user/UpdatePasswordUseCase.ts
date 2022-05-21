@@ -1,5 +1,4 @@
 import { hash } from 'bcrypt'
-import env from '../../config/env'
 import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
 import { MailProvider } from '../../providers/MailProvider'
 import { TokenRepositoryPrisma } from '../../repositories/implementations/TokenRepositoryPrisma'
@@ -32,7 +31,7 @@ class UpdatePasswordUseCase {
       })
       await this.mailProvider.sendMail({
         to: { name: user.name, email: user.email },
-        from: { name: 'Book Depository', email: env.mail.from },
+        from: { name: 'Book Depository', email: String(process.env.MAIL_FROM) },
         subject: 'Alteração de senha',
         text: 'Alteração de senha',
         html: ' <p>Sua senha foi alterada com sucesso!</p>'

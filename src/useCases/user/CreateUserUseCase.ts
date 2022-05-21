@@ -1,6 +1,5 @@
 import { hash } from 'bcrypt'
 import validator from 'validator'
-import env from '../../config/env'
 import { User } from '../../dtos/User'
 import { Role } from '../../enums/Role'
 import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
@@ -40,7 +39,7 @@ class CreateUserUseCase {
     try {
       await this.mailProvider.sendMail({
         to: { name: user.name, email: user.email },
-        from: { name: 'Book Depository', email: env.mail.from },
+        from: { name: 'Book Depository', email: String(process.env.MAIL_FROM) },
         subject: 'Confirmação de Cadastro',
         text: 'Seja bem vindo ao Book Depository',
         html: ` <p>Seja bem vindo ao Book Depository, ${user.name}!</p>

@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 import { decode, verify } from 'jsonwebtoken'
-import env from '../config/env'
 import { Role } from '../enums/Role'
 import { userRepository } from '../repositories/implementations/UserRepositoryPrisma'
 
@@ -12,7 +11,7 @@ export const ensureAuthenticate = (role: Role) => {
     const token = header.split(' ')[1]
 
     try {
-      verify(token, env.jwt.secret)
+      verify(token, String(process.env.JWT_SECRET))
       const { userId, userRole } = decode(token) as {
         userId: string;
         userRole: string;

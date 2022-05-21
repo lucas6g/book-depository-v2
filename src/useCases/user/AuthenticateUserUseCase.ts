@@ -1,6 +1,5 @@
 import { compare } from 'bcrypt'
 import { sign } from 'jsonwebtoken'
-import env from '../../config/env'
 import { User } from '../../dtos/User'
 import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
 import { UserRepository } from '../../repositories/UserRepository'
@@ -21,9 +20,9 @@ class AuthenticateUserUseCase {
         userId: result.id,
         userRole: result.role
       },
-      env.jwt.secret,
+      String(process.env.JWT_SECRET),
       {
-        expiresIn: env.jwt.expiresIn
+        expiresIn: String(process.env.JWT_EXPIRES_IN)
       }
     )
     const output = {

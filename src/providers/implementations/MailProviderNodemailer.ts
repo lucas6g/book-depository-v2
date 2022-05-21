@@ -1,4 +1,3 @@
-import env from '../../config/env'
 import nodemailer from 'nodemailer'
 import Mail from 'nodemailer/lib/mailer'
 import { MailProviderDto } from '../MailProviderDto'
@@ -8,19 +7,22 @@ export class MailProviderNodemailer implements MailProvider {
   private transporter: Mail
 
   constructor () {
-    if (env.app.env === 'prod') {
+    if (String(process.env.NODE_ENV) === 'prod') {
       this.transporter = nodemailer.createTransport({
-        host: env.mail.host,
-        port: env.mail.port as number,
+        host: String(process.env.MAIL_HOST),
+        port: Number(process.env.MAIL_PORT),
         secure: false,
-        auth: { user: env.mail.user, pass: env.mail.pass }
+        auth: {
+          user: String(process.env.MAIL_USER),
+          pass: String(process.env.MAIL_PASSWORD)
+        }
       })
       console.log('Mail provider: nodemailer')
-      console.log(`Mail host: ${env.maildev.host}`)
+      console.log(`Mail host: ${process.env.MAIL_PORT}`)
     } else {
       this.transporter = nodemailer.createTransport({
-        host: env.maildev.host,
-        port: env.maildev.port as number,
+        host: String(process.env.MAILDEV_HOST),
+        port: Number(process.env.MAILDEV_PORT),
         secure: false,
         tls: { rejectUnauthorized: false }
       })

@@ -3,7 +3,6 @@ import { MailProviderNodemailer } from '../../providers/implementations/MailProv
 import { UserRepository } from '../../repositories/UserRepository'
 import { MailProvider } from '../../providers/MailProvider'
 import { Institution } from '../../dtos/Institution'
-import env from '../../config/env'
 import { Role } from '../../enums/Role'
 import { InstitutionRepository } from '../../repositories/InstitutionRepository'
 import { InstitutionRepositoryPrisma } from '../../repositories/implementations/InstitutionRepositoryPrisma'
@@ -32,7 +31,7 @@ class RegisterInstitutionUseCase {
       })
       await this.mailProvider.sendMail({
         to: { name: user.name, email: user.email },
-        from: { name: 'Meu App', email: env.mail.from },
+        from: { name: 'Meu App', email: String(process.env.MAIL_FROM) },
         subject: 'Confirmação de Registro',
         text: 'Registro de Instituição',
         html: ` <p>${user.name}, sua instituição ${input.name} foi registrada com sucesso, </p>

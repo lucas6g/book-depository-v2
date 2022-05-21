@@ -1,4 +1,3 @@
-import env from '../../config/env'
 import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
 import { MailProvider } from '../../providers/MailProvider'
 import { TokenRepositoryPrisma } from '../../repositories/implementations/TokenRepositoryPrisma'
@@ -22,7 +21,7 @@ class RecoverPasswordUseCase {
     try {
       await this.mailProvider.sendMail({
         to: { name: result.name, email: result.email },
-        from: { name: 'Book Depository', email: env.mail.from },
+        from: { name: 'Book Depository', email: String(process.env.MAIL_FROM) },
         subject: 'Recuperação de Senha',
         text: 'Recuperação de Senha',
         html: `<p>Seu código de recuperação de senha é <strong>${token}</strong></p>`

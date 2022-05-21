@@ -22,6 +22,19 @@ model User {
   @@map("users")
 }
 
+model Address {
+  id                String        @id @default(uuid())
+  street            String
+  number            String
+  reference         String
+  city              String
+  state             String
+  zip               String
+  createdAt         DateTime      @default(now())
+
+  @@map("addresses")
+}
+
 model Token {
   id                String        @id @default(uuid())
   token             String        @unique

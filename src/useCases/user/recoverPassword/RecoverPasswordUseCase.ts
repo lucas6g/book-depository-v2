@@ -1,10 +1,10 @@
-import env from '../../config/env'
-import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
-import { MailProvider } from '../../providers/MailProvider'
-import { TokenRepositoryPrisma } from '../../repositories/implementations/TokenRepositoryPrisma'
-import { UserRepositoryPrisma } from '../../repositories/implementations/UserRepositoryPrisma'
-import { TokenRepository } from '../../repositories/TokenRepository'
-import { UserRepository } from '../../repositories/UserRepository'
+import env from '../../../config/env'
+import { MailProviderNodemailer } from '../../../providers/implementations/MailProviderNodemailer'
+import { MailProvider } from '../../../providers/MailProvider'
+import { TokenRepositoryPrisma } from '../../../repositories/implementations/TokenRepositoryPrisma'
+import { UserRepositoryPrisma } from '../../../repositories/implementations/UserRepositoryPrisma'
+import { TokenRepository } from '../../../repositories/TokenRepository'
+import { UserRepository } from '../../../repositories/UserRepository'
 
 class RecoverPasswordUseCase {
   constructor (

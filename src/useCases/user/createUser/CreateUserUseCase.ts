@@ -1,12 +1,12 @@
 import { hash } from 'bcrypt'
 import validator from 'validator'
-import env from '../../config/env'
-import { User } from '../../dtos/User'
-import { Role } from '../../enums/Role'
-import { MailProviderNodemailer } from '../../providers/implementations/MailProviderNodemailer'
-import { MailProvider } from '../../providers/MailProvider'
-import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
-import { UserRepository } from '../../repositories/UserRepository'
+import env from '../../../config/env'
+import { User } from '../../../dtos/User'
+import { Role } from '../../../enums/Role'
+import { MailProviderNodemailer } from '../../../providers/implementations/MailProviderNodemailer'
+import { MailProvider } from '../../../providers/MailProvider'
+import { userRepository } from '../../../repositories/implementations/UserRepositoryPrisma'
+import { UserRepository } from '../../../repositories/UserRepository'
 
 class CreateUserUseCase {
   constructor (

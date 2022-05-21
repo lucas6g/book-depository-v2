@@ -1,11 +1,11 @@
 import { Router } from 'express'
 import { Role } from './enums/Role'
 import { ensureAuthenticate } from './middlewares/ensureAuthenticate'
-import { authenticateUserController } from './useCases/authenticateUser/AuthenticateUserController'
-import { checkUserTokenController } from './useCases/checkUserToken/CheckUserTokenController'
-import { createUserController } from './useCases/createUser/CreateUserController'
-import { recoverPasswordController } from './useCases/recoverPassword/RecoverPasswordController'
-import { updatePasswordController } from './useCases/updatePassword/UpdatePasswordController'
+import { authenticateUserController } from './useCases/user/authenticateUser/AuthenticateUserController'
+import { checkUserTokenController } from './useCases/user/checkUserToken/CheckUserTokenController'
+import { createUserController } from './useCases/user/createUser/CreateUserController'
+import { recoverPasswordController } from './useCases/user/recoverPassword/RecoverPasswordController'
+import { updatePasswordController } from './useCases/user/updatePassword/UpdatePasswordController'
 
 export const router = Router()
 

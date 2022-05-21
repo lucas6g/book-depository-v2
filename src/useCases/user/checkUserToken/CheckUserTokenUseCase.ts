@@ -1,7 +1,7 @@
-import { TokenRepositoryPrisma } from '../../repositories/implementations/TokenRepositoryPrisma'
-import { UserRepositoryPrisma } from '../../repositories/implementations/UserRepositoryPrisma'
-import { TokenRepository } from '../../repositories/TokenRepository'
-import { UserRepository } from '../../repositories/UserRepository'
+import { TokenRepositoryPrisma } from '../../../repositories/implementations/TokenRepositoryPrisma'
+import { UserRepositoryPrisma } from '../../../repositories/implementations/UserRepositoryPrisma'
+import { TokenRepository } from '../../../repositories/TokenRepository'
+import { UserRepository } from '../../../repositories/UserRepository'
 
 class CheckUserTokenUseCase {
   constructor (

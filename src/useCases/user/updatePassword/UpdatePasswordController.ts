@@ -5,7 +5,9 @@ export class UpdatePasswordController {
   async handle (req: Request, res: Response): Promise<Response> {
     const { token, password, passwordConfirmation } = req.body
     if (!token) return res.status(400).send({ message: 'Token not provided' })
-    if (!password) { return res.status(400).send({ message: 'Password not provided' }) }
+    if (!password) {
+      return res.status(400).send({ message: 'Password not provided' })
+    }
     if (password !== passwordConfirmation) {
       return res
         .status(400)

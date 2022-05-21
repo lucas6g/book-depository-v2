@@ -1,3 +1,4 @@
+import { hash } from 'bcrypt'
 import { User } from '../../dtos/User'
 import { Role } from '../../enums/Role'
 import { userRepository } from '../../repositories/implementations/UserRepositoryPrisma'
@@ -11,17 +12,20 @@ class CreateUserUseCase {
     if (emailExist) {
       throw new Error(`User with email '${input.email}' already exists`)
     }
-
     const usernameExist = await this.userRepository.getByUserName(
       input.username
     )
-    if (usernameExist) { throw new Error(`User with username '${input.username}' already exists`) }
+    if (usernameExist) {
+      throw new Error(`User with username '${input.username}' already exists`)
+    }
+    const passwordHash = await hash(input.password, 12)
     let user
     if (input.isAdmin) {
       user = { ...input, role: Role.INSTITUTION_ADMIN }
     } else {
       user = { ...input, role: Role.USER }
     }
+    user.password = passwordHash
     await this.userRepository.create(user)
   }
 }

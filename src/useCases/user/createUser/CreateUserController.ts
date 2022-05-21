@@ -8,14 +8,16 @@ class CreateUserController {
       return res.status(400).json({ error: 'Missing required fields' })
     }
     try {
-      await createUserUseCase.execute({
+      const userEmail = await createUserUseCase.execute({
         name,
         email,
         username,
         password,
         isAdmin
       })
-      return res.status(201).send({ message: 'User created successfully' })
+      return res
+        .status(201)
+        .send({ message: 'User created successfully', email: userEmail })
     } catch (err: any) {
       return res.status(400).json({
         message: err.message || 'Unexpected error.'

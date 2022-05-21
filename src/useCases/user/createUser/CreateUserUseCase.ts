@@ -14,7 +14,7 @@ class CreateUserUseCase {
     private readonly mailProvider: MailProvider
   ) {}
 
-  async execute (input: User.Input): Promise<void> {
+  async execute (input: User.Input): Promise<string> {
     const isValid = validator.isEmail(input.email)
     if (!isValid) throw new Error(`Invalid email: '${input.email}'`)
     const emailExist = await this.userRepository.getByEmail(input.email)
@@ -46,6 +46,7 @@ class CreateUserUseCase {
         html: ` <p>Seja bem vindo ao Book Depository, ${user.name}!</p>
                 <p>Seu código de confirmação é <strong>${token}</strong></p>`
       })
+      return user.email
     } catch (error: any) {
       throw new Error(`Error sending email: ${error.message}`)
     }

@@ -15,6 +15,8 @@ export class MailProviderNodemailer implements MailProvider {
         secure: false,
         auth: { user: env.mail.user, pass: env.mail.pass }
       })
+      console.log('Mail provider: nodemailer')
+      console.log(`Mail host: ${env.maildev.host}`)
     } else {
       this.transporter = nodemailer.createTransport({
         host: env.maildev.host,

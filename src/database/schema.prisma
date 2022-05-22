@@ -61,6 +61,7 @@ model Book {
   year              String
   publishedDate     String        
   quantity          String
+  description       String
   bookCondition     BookCondition
   available         Boolean       @default(true)
   address           Address       @relation(fields: [addressId], references: [id])      

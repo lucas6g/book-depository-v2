@@ -10,6 +10,7 @@ export namespace Book {
     year: string;
     publishedDate: string;
     quantity: string;
+    description: string;
     institutionId: string;
     bookCondition: BookCondition;
     address: Address;

@@ -9,7 +9,7 @@ export namespace Institution {
     id: string;
     name: string;
     address: Address;
-    admin: {
+    admin?: {
       id: string;
       name: string;
       username: string;

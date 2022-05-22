@@ -10,6 +10,7 @@ import { createUserController } from './controllers/user/CreateUserController'
 import { recoverPasswordController } from './controllers/user/RecoverPasswordController'
 import { updatePasswordController } from './controllers/user/UpdatePasswordController'
 import { getAllBooksController } from './controllers/book/GetAllBooksController'
+import { getAllUserInstitutionsController } from './controllers/intitution/GetAllUserInstitutionsController'
 
 export const router = Router()
 
@@ -29,6 +30,12 @@ router.post(
   '/register-institution',
   ensureAuthenticate(Role.INSTITUTION_ADMIN),
   registerInstitutionController.handle
+)
+
+router.get(
+  '/my-institutions',
+  ensureAuthenticate(Role.INSTITUTION_ADMIN),
+  getAllUserInstitutionsController.handle
 )
 
 router.post(

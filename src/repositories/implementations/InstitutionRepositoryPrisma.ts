@@ -23,17 +23,27 @@ export class InstitutionRepositoryPrisma implements InstitutionRepository {
     })
   }
 
-  async getByName (name: string): Promise<any> {
-    return await prismaClient.institution.findUnique({
+  async getByName (name: string): Promise<Institution.Output> {
+    const institution = await prismaClient.institution.findUnique({
       where: { name },
       include: { address: true, books: true }
     })
+    return institution!
   }
 
-  async getById (id: string): Promise<any> {
-    return await prismaClient.institution.findUnique({
+  async getById (id: string): Promise<Institution.Output> {
+    const institution = await prismaClient.institution.findUnique({
       where: { id },
       include: { address: true, books: true }
     })
+    return institution!
+  }
+
+  async getByUserId (userId: string): Promise<Institution.Output[]> {
+    const institutions = await prismaClient.institution.findMany({
+      where: { user: { id: userId } },
+      include: { address: true, books: true }
+    })
+    return institutions
   }
 }

@@ -24,22 +24,20 @@ class AddBookUseCase {
     )
     if (!institution) throw new Error('Institution not found')
 
+    const url = `${process.env.HOST}/files/${input.image?.id}`
     const book = {
       ...input,
       address: { ...input.address },
       image: {
+        ...input.image!,
         id: input.image?.id?.split('.')[0],
-        url: input.image?.url!,
-        name: input.image?.id!,
-        key: input.image?.key!,
-        type: input.image?.type!,
-        size: input.image?.size!
+        url
       }
     }
     try {
       await this.bookRepository.save(user.id, book)
     } catch (err: any) {
-      upload.delete(`${multerConfig.destination}/${book.image.name}`)
+      upload.delete(`${multerConfig.destination}/${book.image.key}`)
       throw new Error('Error adding book')
     }
   }

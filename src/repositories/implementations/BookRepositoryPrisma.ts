@@ -22,6 +22,7 @@ export class BookRepositoryPrisma implements BookRepository {
             id: image?.id!,
             url: image?.url!,
             name: image?.name!,
+            key: image?.key,
             type: image?.type!,
             size: image?.size!
           }

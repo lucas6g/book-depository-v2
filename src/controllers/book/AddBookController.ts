@@ -4,7 +4,6 @@ import { addBookUseCase } from '../../useCases/book/AddBookUseCase'
 class AddBookController {
   async handle (req: Request, res: Response): Promise<Response> {
     const { userId } = req
-    const url = `${process.env.HOST}/files/${req.file?.filename}`
     try {
       const book = {
         ...req.body,
@@ -13,11 +12,10 @@ class AddBookController {
         },
         image: {
           id: req.file?.filename,
-          url,
-          name: req.file?.originalname!,
-          key: req.file?.filename!,
-          type: req.file?.mimetype!,
-          size: req.file?.size!
+          name: req.file?.originalname,
+          key: req.file?.filename,
+          type: req.file?.mimetype,
+          size: req.file?.size
         }
       }
       const result = await addBookUseCase.execute(userId, book)

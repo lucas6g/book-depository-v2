@@ -2,7 +2,7 @@ export type Image = {
   id?: string;
   url: string;
   name: string;
-  key?: string;
+  key: string;
   type: string;
   size: number;
 };
